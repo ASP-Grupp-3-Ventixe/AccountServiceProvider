@@ -16,7 +16,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(x =>
     .AddEntityFrameworkStores<DataContext>()
     .AddDefaultTokenProviders();
 
-builder.Services.AddSingleton<AccountServiceBusHandler>();
+//builder.Services.AddSingleton<AccountServiceBusHandler>();
 
 var app = builder.Build();
 

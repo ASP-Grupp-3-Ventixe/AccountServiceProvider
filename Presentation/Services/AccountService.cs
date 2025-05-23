@@ -8,10 +8,10 @@ using System.Text.Json;
 
 namespace Presentation.Services;
 
-public class AccountService(UserManager<IdentityUser> userManager, AccountServiceBusHandler serviceBus) : AccountGrpcService.AccountGrpcServiceBase
+public class AccountService(UserManager<IdentityUser> userManager /*AccountServiceBusHandler serviceBus*/) : AccountGrpcService.AccountGrpcServiceBase
 {
     private readonly UserManager<IdentityUser> _userManager = userManager;
-    private readonly AccountServiceBusHandler _serviceBus = serviceBus;
+    //private readonly AccountServiceBusHandler _serviceBus = serviceBus;
 
     public override async Task<CreateAccountReply> CreateAccount(CreateAccountRequest request, ServerCallContext context)
     {
@@ -28,7 +28,7 @@ public class AccountService(UserManager<IdentityUser> userManager, AccountServic
             email = user.Email,
         });
 
-        await _serviceBus.PublishAsync(payload);
+        //await _serviceBus.PublishAsync(payload);
 
         var reply = new CreateAccountReply
         {
